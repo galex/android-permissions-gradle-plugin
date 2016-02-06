@@ -2,13 +2,20 @@ package il.co.galex.permissions.plugin;
 
 import com.android.build.gradle.AppPlugin
 import com.android.build.gradle.LibraryPlugin
-import il.co.galex.permissions.model.DangerousPermission
+import il.co.galex.permissions.task.GenerateHelperTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
 class PermissionsPlugin implements Plugin<Project> {
 
-    @Override void apply(Project project) {
+    @Override
+    void apply(Project project) {
+
+        //println "Hello from the configuration plugin"
+
+        //project.task('executePermissionsPlugin') << {
+
+        println("Running APPLY from plugin")
 
         def hasApp = project.plugins.hasPlugin AppPlugin
         def hasLib = project.plugins.hasPlugin LibraryPlugin
@@ -25,31 +32,29 @@ class PermissionsPlugin implements Plugin<Project> {
         }
 
         variants.all { variant ->
-
-            println "Permissions [${variant.name}]"
-
             variant.outputs.each { output ->
 
+                def taskName = "generate${variant.name.capitalize()}PermissionsHelper"
+                println "taskName = " + taskName
+                def outputHelper = project.file("$project.buildDir/generated/source/permissions/$variant.name/")
+                println "output = " + outputHelper
+                def dependingOnTask = "process${variant.name.capitalize()}Manifest"
+                println "dependingOnTask = " + dependingOnTask
+
                 // find first the manifest for every variant
-                println "Permissions [${variant.name}] output: ${output}"
-                def manifestOutFile = output.processManifest.manifestOutputFile
-                println "Permissions [${variant.name}] manifestOutFile: ${manifestOutFile}"
+                //println "Permissions [${variant.name}] output: ${output}"
+                File manifestOutFile = output.processManifest.manifestOutputFile
+                println "manifestOutFile = " + manifestOutFile
 
-                // read the list of permissions out of it
-                def manifest = new XmlSlurper().parse(manifestOutFile)
-
-                def permissionList = manifest.'**'.findAll{ it.name() == 'uses-permission'}
-
-                println "Permissions [${variant.name}] list of permissions: ${permissionList}"
-                println "Permissions [${variant.name}] list of permissions size: ${permissionList.size()}"
-
-                permissionList.each { permission ->
-
-                    println "Permission = " + permission["@android:name"]
+                def task = project.task(taskName, dependsOn: dependingOnTask, type: GenerateHelperTask) {
+                    manifestFile = manifestOutFile
+                    helperPackage = project.android.defaultConfig.applicationId + ".helper"
+                    helperClassName = 'PermissionsHelper'
+                    outputDir = outputHelper
                 }
-
-                println DangerousPermission.READ_PHONE_STATE
+                variant.registerJavaGeneratingTask(task, outputHelper)
             }
         }
     }
 }
+

@@ -1,6 +1,7 @@
 package il.co.galex.permissions.model
 /**
- * Created by galex on 06/02/16.
+ * DangerousPermission represents the fixed list of Dangerous permissions to this date.
+ * @author Alexander Gherschon
  */
 enum DangerousPermission {
 
@@ -28,4 +29,21 @@ enum DangerousPermission {
     RECEIVE_MMS,
     READ_EXTERNAL_STORAGE,
     WRITE_EXTERNAL_STORAGE
+
+
+    public String constantName(){
+        return "android.permission." + this.name();
+    }
+
+    public String sdkName(){
+        return "Manifest.permission." + this.name();
+    }
+
+    public static DangerousPermission get(String str){
+
+        for(DangerousPermission permission : values()){
+            if(permission.name().equals(str)) return permission
+        }
+        return null
+    }
 }
