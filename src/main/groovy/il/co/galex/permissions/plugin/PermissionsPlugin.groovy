@@ -2,7 +2,7 @@ package il.co.galex.permissions.plugin;
 
 import com.android.build.gradle.AppPlugin
 import com.android.build.gradle.LibraryPlugin
-import il.co.galex.permissions.model.Permission
+import il.co.galex.permissions.model.DangerousPermission
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -48,7 +48,7 @@ class PermissionsPlugin implements Plugin<Project> {
                     println "Permission = " + permission["@android:name"]
                 }
 
-                println Permission.INTERNET
+                println DangerousPermission.READ_PHONE_STATE
             }
         }
     }
