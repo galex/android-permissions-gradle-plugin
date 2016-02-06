@@ -1,5 +1,6 @@
 apply plugin: 'groovy'
 apply plugin: 'maven'
+apply plugin: 'idea'
 
 group = 'co.il.galex.permissions'
 version = '0.0.1'
