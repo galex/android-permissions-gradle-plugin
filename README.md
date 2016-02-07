@@ -28,3 +28,24 @@ public class PermissionsHelper {
 For each dangerous permission, a reference is generated with its name so you can forget where those permissions really are, and a static array containing all the dangerous permissions.
 Note that you can see here only two declared permissions as the permission `android.permission.INTERNET` is a normal permission.
 
+### Usage
+
+In your root build.gradle includes the plugin, published in jCenter:
+
+```gradle
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        (...)
+        classpath 'il.co.galex.permissions:permissions:1.0.0'
+    }
+}
+
+```
+
+In every Android Application or Library module, apply the plugin:
+```gradle
+apply plugin: 'il.co.galex.permissions'
+```
