@@ -5,7 +5,9 @@ import java.util.regex.Pattern
 import static java.util.regex.Pattern.*
 
 /**
- * Created by galex on 07/02/16.
+ * Configuration extension of the plugin, including packageName and className validation.
+ *
+ * @author Alexander Gherschon
  */
 class PermissionsExtension {
 

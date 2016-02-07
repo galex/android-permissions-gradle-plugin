@@ -3,6 +3,7 @@ package il.co.galex.permissions.task
 import groovy.text.GStringTemplateEngine
 import groovy.text.StreamingTemplateEngine
 import il.co.galex.permissions.model.DangerousPermission
+import il.co.galex.permissions.util.FileUtils
 import il.co.galex.permissions.util.FilterUtils
 import org.apache.commons.io.IOUtils
 import org.gradle.api.DefaultTask
@@ -12,7 +13,10 @@ import org.gradle.api.tasks.TaskAction
 import java.util.jar.JarFile
 
 /**
- * Created by galex on 06/02/16.
+ * PermissionsHelper class generation task.
+ * This tasks receives all the parameters necessary to generate the PermissionsHelper class.
+ *
+ * @author Alexander Gherschon
  */
 class GenerateHelperTask extends DefaultTask {
 
@@ -54,7 +58,8 @@ class GenerateHelperTask extends DefaultTask {
         //println permissions
 
         def path = '/templates/PermissionsHelper.java.template';
-        File tempFile = getResourceFile(getResource(path))
+        URI uri = this.getClass().getResource(path).toURI()
+        File tempFile = FileUtils.getFile(uri)
         //println tempFile
 
         def binding = [
@@ -75,7 +80,7 @@ class GenerateHelperTask extends DefaultTask {
 
         File fileDir = new File(fileDirPath)
         fileDir.mkdirs();
-        File finalFile = new File(fileDirPath + className + ".java")
+        File finalFile = new File(fileDirPath + className + FileUtils.SUFFIX)
         println finalFile
 
         finalFile.createNewFile();
@@ -83,33 +88,5 @@ class GenerateHelperTask extends DefaultTask {
         PrintWriter out = new PrintWriter(finalFile);
         out.println(generatedTemplate)
         out.close()
-    }
-
-
-    private InputStream getResource(String path){
-
-        URI uri = this.getClass().getResource(path).toURI()
-        println "uri = " + uri
-        // to read the resource file at runtime, we have no other choice than to manage the jar file itself
-        def params = uri.toString().split('!')
-        def jarPath = params[0]
-        def resourcePath = params[1].substring(1)
-        println resourcePath
-        def jarFile = new JarFile(jarPath.split(':')[2])
-        println jarFile
-        def jarEntry = jarFile.getEntry(resourcePath)
-        return jarFile.getInputStream(jarEntry)
-    }
-
-    public static File getResourceFile(InputStream inputStream) throws IOException {
-
-        final File tempFile = File.createTempFile(PREFIX, SUFFIX);
-        tempFile.deleteOnExit();
-        try {
-            FileOutputStream out = new FileOutputStream(tempFile);
-            IOUtils.copy(inputStream, out);
-        }
-        catch (Exception e){}
-        return tempFile
     }
 }

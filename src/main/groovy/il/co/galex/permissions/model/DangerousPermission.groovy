@@ -1,6 +1,7 @@
 package il.co.galex.permissions.model
 /**
- * DangerousPermission represents the fixed list of Dangerous permissions to this date.
+ * DangerousPermission represents the list of Dangerous permissions in the Android SDK.
+ *
  * @author Alexander Gherschon
  */
 enum DangerousPermission {
@@ -30,14 +31,23 @@ enum DangerousPermission {
     READ_EXTERNAL_STORAGE,
     WRITE_EXTERNAL_STORAGE
 
+    /**
+     * Manifest.permission + enum name
+     * @return the name of the variable containing this Permission in the Android SDK
+     */
     public String getSdkName(){
         return "Manifest.permission." + this.name();
     }
 
-    public static DangerousPermission get(String str){
+    /**
+     *
+     * @param str
+     * @return enum if the parameter str has an enum equivalent, and if not returns null
+     */
+    public static DangerousPermission get(String value){
 
         for(DangerousPermission permission : values()){
-            if(permission.name().equals(str)) return permission
+            if(permission.name().equals(value)) return permission
         }
         return null
     }

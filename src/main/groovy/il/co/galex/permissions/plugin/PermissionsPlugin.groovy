@@ -7,16 +7,17 @@ import il.co.galex.permissions.task.GenerateHelperTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
+/**
+ * Permissions Plugin.
+ * This plugin configures a task to be ran by gradle after the processManifest task which will generate a helper class
+ * to help request the Permissions from the user.
+ *
+ * @author Alexander Gherschon
+ */
 class PermissionsPlugin implements Plugin<Project> {
 
     @Override
     void apply(Project project) {
-
-        //println "Hello from the configuration plugin"
-
-        //project.task('executePermissionsPlugin') << {
-
-        //println("Running APPLY from plugin")
 
         project.extensions.create("permissions", PermissionsExtension)
 
