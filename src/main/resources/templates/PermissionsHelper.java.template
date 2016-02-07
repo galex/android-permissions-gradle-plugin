@@ -8,15 +8,20 @@ import android.support.v4.content.ContextCompat;
 import java.util.ArrayList;
 
 /**
- * Helper class for Permissions Management (API >= 23)
- * This class contains a static list of the dangerous permissions declared in the Android Manifest.
+ * Helper class for Permissions Management (API >= 23).
+ *
+ * This class contains a static list of the dangerous permissions declared in the Android Manifest, plus
+ * a set of static functions to help with the task of checking which were granted or not.
+ *
  * @author android-permissions-gradle-plugin
  */
 @SuppressWarnings("unused")
 public class PermissionsHelper {
 <% permissions.each { %>
     public static final String <%= it %> = Manifest.permission.<%= it %>;<%  } %>
-    public static final String [] REQUIRED_PERMISSIONS = {<%= permissions.join(', ') %>};
+    public static final String [] REQUIRED_PERMISSIONS = { <% permissions.eachWithIndex { item, index -> %>
+        <%= item %><%= index < permissions.size()-1 ? "," : "" %><% } %>
+    };
 
     /**
      * Checks if a permission was granted bu the user
