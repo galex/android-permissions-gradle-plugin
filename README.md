@@ -59,3 +59,16 @@ permissions {
     helperClassName "PermissionsUtils"
 }
 ```
+## Utility Methods
+
+The class contains utility methods to ease the work with the [System Permissions API](http://developer.android.com/guide/topics/security/permissions.html).
+
+## License
+
+
+## FAQ
+
+
+## Contact
+
+I will be happy to answer to you at alexandre.gherschon(at)gmail.com.
