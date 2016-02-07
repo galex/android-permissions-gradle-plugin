@@ -18,7 +18,7 @@ import java.util.ArrayList;
 @SuppressWarnings("unused")
 public class ${helperClassName} {
 <% permissions.each { %>
-    public static final String <%= it %> = Manifest.permission.<%= it %>;<%  } %>
+    public static final String <%= it %> = <%= it.getSdkName() %>;<%  } %>
     public static final String [] REQUIRED_PERMISSIONS = { <% permissions.eachWithIndex { item, index -> %>
         <%= item %><%= index < permissions.size()-1 ? "," : "" %><% } %>
     };
@@ -64,7 +64,7 @@ public class ${helperClassName} {
     }
 
     /**
-     * Returns the permissions that granted by the user from a set of permissions
+     * Returns the permissions that were granted by the user from a set of permissions
      *
      * @param context Android context
      * @param permissions to verify
@@ -79,7 +79,7 @@ public class ${helperClassName} {
     }
 
     /**
-     * Returns the permissions that granted by the user from the dangerous permissions declared in the Manifest
+     * Returns the permissions that were granted by the user from the dangerous permissions declared in the Manifest
      *
      * @param context Android context
      * @return list of granted permissions

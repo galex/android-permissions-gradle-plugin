@@ -30,12 +30,7 @@ enum DangerousPermission {
     READ_EXTERNAL_STORAGE,
     WRITE_EXTERNAL_STORAGE
 
-
-    public String constantName(){
-        return "android.permission." + this.name();
-    }
-
-    public String sdkName(){
+    public String getSdkName(){
         return "Manifest.permission." + this.name();
     }
 
