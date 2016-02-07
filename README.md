@@ -6,9 +6,11 @@ This plugin generates a class to help with that task. It parses the Android Mani
 ## Generated Code
 If your manifest contains those three permissions:
 ```xml
+<manifest (...)
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+</manifest>
 ```
 The plugin will generate this helper class named PermissionsHelper:
 
