@@ -73,7 +73,7 @@ bintray {
             name = pluginVersion
             desc = 'Android Permissions Gradle Plugin'
             released = new Date()
-            vcsTag = '1.0.0'
+            vcsTag = pluginVersion
             publications = ['PermissionsPublication']
         }
     }

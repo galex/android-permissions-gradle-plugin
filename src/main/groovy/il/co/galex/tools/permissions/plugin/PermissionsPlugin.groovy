@@ -46,7 +46,7 @@ class PermissionsPlugin implements Plugin<Project> {
                 // find first the manifest for every variant
                 //println "Permissions [${variant.name}] output: ${output}"
                 File manifestOutFile = output.processManifest.manifestOutputFile
-                println "manifestOutFile = " + manifestOutFile
+                //println "manifestOutFile = " + manifestOutFile
 
                 def task = project.task(taskName, dependsOn: dependingOnTask, type: GenerateHelperTask) {
                     manifestFile = manifestOutFile

@@ -67,4 +67,6 @@ permissions {
 The class contains utility methods to ease the work with the [System Permissions API](http://developer.android.com/guide/topics/security/permissions.html).
 
 ## License
+This plugin is available under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
+(c) All rights reserved Alexander Gherschon

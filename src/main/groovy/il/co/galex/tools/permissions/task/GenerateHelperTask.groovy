@@ -54,7 +54,7 @@ class GenerateHelperTask extends DefaultTask {
         File fileDir = new File(fileDirPath)
         fileDir.mkdirs();
         File finalFile = new File(fileDirPath + className + FileUtils.SUFFIX)
-        println finalFile
+        //println finalFile
         finalFile.createNewFile();
 
         // write into the final file the generated template
