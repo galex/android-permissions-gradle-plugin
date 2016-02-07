@@ -1,8 +1,6 @@
 apply plugin: 'groovy'
-apply plugin: 'maven'
-
-group = 'il.co.galex.tools.build'
-version = '1.0.0'
+//apply plugin: 'maven'
+apply plugin: 'maven-publish'
 
 repositories {
     mavenCentral()
@@ -11,6 +9,7 @@ repositories {
 dependencies {
     repositories {
         mavenCentral()
+        jcenter()
     }
 
     compile gradleApi()
@@ -18,8 +17,44 @@ dependencies {
     compile 'com.android.tools.build:gradle:1.5.0'
 }
 
-install {
-    repositories.mavenInstaller {
-        pom.artifactId = 'permissions'
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6'
+    }
+}
+apply plugin: 'com.jfrog.bintray'
+
+
+publishing {
+    publications {
+        PermissionsPublication(MavenPublication) {
+            groupId = 'il.co.galex.tools.build'
+            artifactId = 'permissions'
+            version = '1.0.0'
+            from components.java
+        }
+    }
+}
+
+bintray {
+    user bintrayUser
+    key bintrayPass
+    pkg {
+        repo = 'maven'
+        name = 'android-permissions-gradle-plugin'
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/galex/android-permissions-gradle-plugin.git'
+
+        version {
+            name = '1.0.0'
+            desc = 'Android Permissions Gradle Plugin'
+            released = new Date()
+            vcsTag = '1.0.0'
+            //attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
+            publications = ['PermissionsPublication']
+        }
     }
 }
