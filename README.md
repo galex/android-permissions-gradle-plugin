@@ -46,8 +46,7 @@ In every Android Application or Library module, apply the plugin:
 apply plugin: 'il.co.galex.permissions'
 ```
 ## Nomenclature
-The default generated class will be named `PermissionsHelper`.
-The default package depends on the applicationId. If the applicationId is `com.example.myapp`, the package name will be `com.example.myapp.helper`.
+The default generated class is named `PermissionsHelper` and the default package depends on the applicationId. If the applicationId is `com.example.myapp`, the package name will be `com.example.myapp.helper`.
 ## Configuration
 You can change the package name and the class name to suit your needs.
 For instance if you prefer the 'utils' convention:
