@@ -37,10 +37,17 @@ class GenerateHelperTask extends DefaultTask {
     @TaskAction
     def generateHelper() {
 
+        println "config permissions.helperPackage ${project.permissions.helperPackage}"
+        println "config permissions.helperClassName ${project.permissions.helperClassName}"
+
         println "GenerateHelper manifestFile = " + manifestFile
         //println "GenerateHelper requiredPermissions = " + requiredPermissions
-        println "GenerateHelper helperPackage = " + helperPackage
-        println "GenerateHelper helperClassName = " + helperClassName
+
+        def classPackage = project.permissions.helperPackage != null ? project.permissions.helperPackage : helperPackage
+        def className = project.permissions.helperClassName != null ? project.permissions.helperClassName : helperClassName
+
+        println "GenerateHelper helperPackage = " + classPackage
+        println "GenerateHelper helperClassName = " + className
         println "GenerateHelper outputDir = " + outputDir
 
         def permissions = FilterUtils.getRequiredPermissions(manifestFile)
@@ -52,7 +59,8 @@ class GenerateHelperTask extends DefaultTask {
 
         def binding = [
                 permissions : permissions,
-                helperPackage : helperPackage
+                helperPackage : classPackage,
+                helperClassName : className
         ]
 
         def engine = new GStringTemplateEngine()
@@ -62,13 +70,13 @@ class GenerateHelperTask extends DefaultTask {
 
         // write this string to the correct path of file
 
-        String fileDirPath = outputDir.getAbsolutePath() + "/" + helperPackage.replace('.', '/') + "/"
+        String fileDirPath = outputDir.getAbsolutePath() + "/" + classPackage.replace('.', '/') + "/"
         println fileDirPath
 
         File fileDir = new File(fileDirPath)
         fileDir.mkdirs();
 
-        File finalFile = new File(fileDirPath + helperClassName + ".java")
+        File finalFile = new File(fileDirPath + className + ".java")
         println finalFile
 
         finalFile.createNewFile();

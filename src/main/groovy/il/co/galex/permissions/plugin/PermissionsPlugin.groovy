@@ -2,6 +2,7 @@ package il.co.galex.permissions.plugin;
 
 import com.android.build.gradle.AppPlugin
 import com.android.build.gradle.LibraryPlugin
+import il.co.galex.permissions.model.PermissionsExtension
 import il.co.galex.permissions.task.GenerateHelperTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -16,6 +17,8 @@ class PermissionsPlugin implements Plugin<Project> {
         //project.task('executePermissionsPlugin') << {
 
         println("Running APPLY from plugin")
+
+        project.extensions.create("permissions", PermissionsExtension)
 
         def hasApp = project.plugins.hasPlugin AppPlugin
         def hasLib = project.plugins.hasPlugin LibraryPlugin

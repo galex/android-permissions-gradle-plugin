@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * @author android-permissions-gradle-plugin
  */
 @SuppressWarnings("unused")
-public class PermissionsHelper {
+public class ${helperClassName} {
 <% permissions.each { %>
     public static final String <%= it %> = Manifest.permission.<%= it %>;<%  } %>
     public static final String [] REQUIRED_PERMISSIONS = { <% permissions.eachWithIndex { item, index -> %>
