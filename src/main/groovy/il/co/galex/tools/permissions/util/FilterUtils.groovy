@@ -21,7 +21,7 @@ class FilterUtils {
         if (manifestOutFile != null && manifestOutFile.exists()) {
 
             def manifest = new XmlSlurper().parse(manifestOutFile)
-            def permissionList = manifest.'**'.findAll { it.name() == 'uses-permission' }
+            def permissionList = manifest.'**'.findAll { it.name() == 'uses-permission' && !it["@tools:node"].toString().equals("remove") }
 
             permissionList.each { it ->
                 def permission = it["@android:name"].toString().tokenize('.')[-1]
