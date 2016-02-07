@@ -47,10 +47,10 @@ apply plugin: 'il.co.galex.permissions'
 ```
 ## Nomenclature
 The default generated class will be named `PermissionsHelper`.
-The default package of name depends on the applicationId. If the applicationId is `com.example.myapp`, the package name will be `com.example.myapp.helper`.
+The default package depends on the applicationId. If the applicationId is `com.example.myapp`, the package name will be `com.example.myapp.helper`.
 ## Configuration
 You can change the package name and the class name to suit your needs.
-Add this at the root of your app or library build.gradle:
+For instance if you prefer the 'utils' convention:
 ```gradle
 android {
     (...)
