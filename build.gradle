@@ -4,7 +4,7 @@ apply plugin: 'maven-publish'
 ext {
 
     pluginGroupId = 'il.co.galex.tools.build'
-    pluginVersion = '1.0.3'
+    pluginVersion = '1.0.4'
 }
 
 repositories {
@@ -33,6 +33,14 @@ buildscript {
 apply plugin: 'com.jfrog.bintray'
 
 
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    from javadoc.destinationDir
+}
+
 publishing {
     publications {
         PermissionsPublication(MavenPublication) {
@@ -40,6 +48,14 @@ publishing {
             artifactId = 'permissions'
             version = pluginVersion
             from components.java
+
+            artifact sourceJar {
+                classifier "sources"
+            }
+
+            artifact javadocJar {
+                classifier = 'javadoc'
+            }
         }
     }
 }

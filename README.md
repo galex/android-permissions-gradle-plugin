@@ -1,4 +1,4 @@
-# Android Permissions Gradle Plugin (latest version: 1.0.3)
+# Android Permissions Gradle Plugin (latest version: 1.0.4)
 ## Introduction
 Since Android Marshmallow, developers have to [request permissions](http://developer.android.com/guide/topics/security/permissions.html) the Android SDK considers dangerous, aka [Dangerous Permissions](http://developer.android.com/guide/topics/security/permissions.html#normal-dangerous).
 
@@ -37,7 +37,7 @@ buildscript {
     }
     dependencies {
         (...)
-        classpath 'il.co.galex.tools.build:permissions:1.0.3'
+        classpath 'il.co.galex.tools.build:permissions:1.0.4'
     }
 }
 
