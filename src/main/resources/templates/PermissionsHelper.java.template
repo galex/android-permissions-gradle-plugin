@@ -23,6 +23,8 @@ public class ${helperClassName} {
         <%= item %><%= index < permissions.size()-1 ? "," : "" %><% } %>
     };
 
+    private ${helperClassName}(){}
+
     /**
      * Checks if a permission was granted bu the user
      *
