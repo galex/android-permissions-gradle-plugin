@@ -28,5 +28,5 @@ public class PermissionsHelper {
 }
 ```
 For each dangerous permission, a reference is generated with its name so you can forget where those permissions really are, and a static array containing all the dangerous permissions.
-Note that you can see here only two declared permissions as the permissions android.permission.INTERNET is a normal permission.
+Note that you can see here only two declared permissions as the permission `android.permission.INTERNET` is a normal permission.
 
