@@ -1,4 +1,4 @@
-package il.co.galex.permissions.model
+package il.co.galex.tools.permissions.model
 
 import java.util.regex.Pattern
 
@@ -13,7 +13,7 @@ class PermissionsExtension {
 
     private static final Pattern PACKAGE_IDENTIFIER = compile("(\\p{javaJavaIdentifierStart}\\p{javaJavaIdentifierPart}*\\.)*\\p{javaJavaIdentifierStart}\\p{javaJavaIdentifierPart}*");
     private static final Pattern CLASS_IDENTIFIER = compile("[A-Z_](\$[A-Z_]|[\\w_])*");
-    private static final String ADVICE = ", please fix it or remove it from the permissions configuration";
+    private static final String ADVICE = ", please fix it or remove it from the permissions plugin configuration";
 
     private String helperPackage
     private String helperClassName

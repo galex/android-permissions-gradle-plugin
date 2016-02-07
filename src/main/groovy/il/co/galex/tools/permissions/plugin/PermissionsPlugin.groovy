@@ -1,9 +1,9 @@
-package il.co.galex.permissions.plugin;
+package il.co.galex.tools.permissions.plugin;
 
 import com.android.build.gradle.AppPlugin
 import com.android.build.gradle.LibraryPlugin
-import il.co.galex.permissions.model.PermissionsExtension
-import il.co.galex.permissions.task.GenerateHelperTask
+import il.co.galex.tools.permissions.model.PermissionsExtension
+import il.co.galex.tools.permissions.task.GenerateHelperTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -27,7 +27,6 @@ class PermissionsPlugin implements Plugin<Project> {
             throw new IllegalStateException("'com.android.application' or 'com.android.library' plugin required.")
         }
 
-        def log = project.logger
         def variants
         if (hasApp) {
             variants = project.android.applicationVariants
@@ -37,7 +36,6 @@ class PermissionsPlugin implements Plugin<Project> {
 
         variants.all { variant ->
             variant.outputs.each { output ->
-
                 def taskName = "generate${variant.name.capitalize()}PermissionsHelper"
                 //println "taskName = " + taskName
                 def outputHelper = project.file("$project.buildDir/generated/source/permissions/$variant.name/")

@@ -1,16 +1,11 @@
-package il.co.galex.permissions.task
+package il.co.galex.tools.permissions.task
 
 import groovy.text.GStringTemplateEngine
-import groovy.text.StreamingTemplateEngine
-import il.co.galex.permissions.model.DangerousPermission
-import il.co.galex.permissions.util.FileUtils
-import il.co.galex.permissions.util.FilterUtils
-import org.apache.commons.io.IOUtils
+import il.co.galex.tools.permissions.util.FileUtils
+import il.co.galex.tools.permissions.util.FilterUtils
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
-
-import java.util.jar.JarFile
 
 /**
  * PermissionsHelper class generation task.
@@ -20,11 +15,7 @@ import java.util.jar.JarFile
  */
 class GenerateHelperTask extends DefaultTask {
 
-    public static final String PREFIX = "stream2file";
-    public static final String SUFFIX = ".tmp";
-
-    //@Input
-    //List<DangerousPermission> requiredPermissions
+    private static final String HELPER_TEMPLATE_PATH = '/templates/PermissionsHelper.java.template'
 
     @Input
     File manifestFile
@@ -41,26 +32,12 @@ class GenerateHelperTask extends DefaultTask {
     @TaskAction
     def void generateHelper() {
 
-        //println "config permissions.helperPackage ${project.permissions.helperPackage}"
-        //println "config permissions.helperClassName ${project.permissions.helperClassName}"
-
-        //println "GenerateHelper manifestFile = " + manifestFile
-        //println "GenerateHelper requiredPermissions = " + requiredPermissions
-
         def classPackage = project.permissions.helperPackage != null ? project.permissions.helperPackage : helperPackage
         def className = project.permissions.helperClassName != null ? project.permissions.helperClassName : helperClassName
-
-        //println "GenerateHelper helperPackage = " + classPackage
-        //println "GenerateHelper helperClassName = " + className
-        //println "GenerateHelper outputDir = " + outputDir
-
         def permissions = FilterUtils.getRequiredPermissions(manifestFile)
-        //println permissions
 
-        def path = '/templates/PermissionsHelper.java.template';
-        URI uri = this.getClass().getResource(path).toURI()
+        URI uri = this.getClass().getResource(HELPER_TEMPLATE_PATH).toURI()
         File tempFile = FileUtils.getFile(uri)
-        //println tempFile
 
         def binding = [
                 permissions : permissions,
@@ -71,20 +48,16 @@ class GenerateHelperTask extends DefaultTask {
         def engine = new GStringTemplateEngine()
         def template = engine.createTemplate(tempFile).make(binding)
         def generatedTemplate = template.toString()
-        //println generatedTemplate
 
         // write this string to the correct path of file
-
         String fileDirPath = outputDir.getAbsolutePath() + "/" + classPackage.replace('.', '/') + "/"
-        //println fileDirPath
-
         File fileDir = new File(fileDirPath)
         fileDir.mkdirs();
         File finalFile = new File(fileDirPath + className + FileUtils.SUFFIX)
         println finalFile
-
         finalFile.createNewFile();
 
+        // write into the final file the generated template
         PrintWriter out = new PrintWriter(finalFile);
         out.println(generatedTemplate)
         out.close()

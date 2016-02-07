@@ -35,7 +35,7 @@ buildscript {
     }
     dependencies {
         (...)
-        classpath 'il.co.galex.permissions:permissions:1.0.0'
+        classpath 'il.co.galex.tools.build:permissions:1.0.0'
     }
 }
 
