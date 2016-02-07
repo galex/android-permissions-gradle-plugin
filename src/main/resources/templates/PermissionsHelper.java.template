@@ -17,24 +17,12 @@ import java.util.ArrayList;
  */
 @SuppressWarnings("unused")
 public class ${helperClassName} {
-<% permissions.each { %>
-    public static final String <%= it %> = <%= it.getSdkName() %>;<%  } %>
+
     public static final String [] REQUIRED_PERMISSIONS = { <% permissions.eachWithIndex { item, index -> %>
-        <%= item %><%= index < permissions.size()-1 ? "," : "" %><% } %>
+        <%= item.getSdkName() %><%= index < permissions.size()-1 ? "," : "" %><% } %>
     };
 
     private ${helperClassName}(){}
-
-    /**
-     * Checks if a permission was granted bu the user
-     *
-     * @param context Android context
-     * @param permission to verify
-     * @return true if the permission was granted by the user
-     */
-    public static boolean granted(Context context, String permission) {
-        return ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED;
-    }
 
     /**
      * Checks if the dangerous permissions declared in the Manifest were granted by the user
@@ -43,7 +31,7 @@ public class ${helperClassName} {
      * @param permissions to verify
      * @return true if all the permissions were granted by the user
      */
-    public static boolean granted(Context context, String [] permissions) {
+    public static boolean granted(Context context, String... permissions) {
         for (String permission : permissions) {
             if (ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_DENIED)
                 return false;
@@ -72,7 +60,7 @@ public class ${helperClassName} {
      * @param permissions to verify
      * @return list of granted permissions
      */
-    public static String [] filterGranted(Context context, String [] permissions) {
+    public static String [] filterGranted(Context context, String... permissions) {
         ArrayList<String> permitted = new ArrayList<>();
         for (String permission : permissions) {
             if (granted(context, permission)) permitted.add(permission);
@@ -101,7 +89,7 @@ public class ${helperClassName} {
      * @param permissions to verify
      * @return list of not granted permissions
      */
-    public static String [] filterNotGranted(Context context, String [] permissions) {
+    public static String [] filterNotGranted(Context context, String... permissions) {
         ArrayList<String> nonPermitted = new ArrayList<>();
         for (String permission : permissions) {
             if (!granted(context, permission)) nonPermitted.add(permission);

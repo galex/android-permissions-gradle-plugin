@@ -4,7 +4,7 @@ apply plugin: 'maven-publish'
 ext {
 
     pluginGroupId = 'il.co.galex.tools.build'
-    pluginVersion = '1.0.4'
+    pluginVersion = '1.0.6'
 }
 
 repositories {

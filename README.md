@@ -1,4 +1,4 @@
-# Android Permissions Gradle Plugin (1.0.4)
+# Android Permissions Gradle Plugin (1.0.6)
 ## Introduction
 Since Android Marshmallow, developers have to [request permissions](http://developer.android.com/guide/topics/security/permissions.html) the Android SDK considers dangerous, aka [Dangerous Permissions](http://developer.android.com/guide/topics/security/permissions.html#normal-dangerous).
 
@@ -16,17 +16,15 @@ The plugin will generate this helper class named PermissionsHelper:
 
 ```java
 public class PermissionsHelper {
-    public static final String GET_ACCOUNTS = Manifest.permission.GET_ACCOUNTS;
-    public static final String READ_PHONE_STATE = Manifest.permission.READ_PHONE_STATE;
     public static final String [] REQUIRED_PERMISSIONS = {
-        GET_ACCOUNTS,
-        READ_PHONE_STATE
+        Manifest.permission.GET_ACCOUNTS,
+        Manifest.permission.READ_PHONE_STATE
     };
     (...)
 }
 ```
-For each dangerous permission, a reference is generated with its name so you can forget where those permissions really are, and a static array containing all the dangerous permissions.
-Note that you can see here only two declared permissions as the permission `android.permission.INTERNET` is a normal permission.
+The generated class contains a static String [] of all the dangerous permissions from the manifest.
+Note that you can see here only two declared permissions as the permission `android.permission.INTERNET` is a not a dangerous permission.
 ## Usage
 In your root build.gradle add the plugin, published in jCenter:
 
@@ -37,7 +35,7 @@ buildscript {
     }
     dependencies {
         (...)
-        classpath 'il.co.galex.tools.build:permissions:1.0.4'
+        classpath 'il.co.galex.tools.build:permissions:1.0.6'
     }
 }
 
@@ -63,8 +61,8 @@ permissions {
 }
 ```
 ## Utility Methods
-
 The class contains utility methods to ease the work with the [System Permissions API](http://developer.android.com/guide/topics/security/permissions.html).
+More documentation on this subject will be added soon.
 
 ## License
 This plugin is available under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
