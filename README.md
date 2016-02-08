@@ -64,12 +64,12 @@ permissions {
 The class contains utility methods to ease the work with the [System Permissions API](http://developer.android.com/guide/topics/security/permissions.html).
 
 ```java
-    public static boolean granted(Context context) {}
-    public static boolean granted(Context context, String... permissions){}
-    public static String [] filterGranted(Context context) {}
-    public static String [] filterGranted(Context context, String... permissions){}
-    public static String [] filterNotGranted(Context context) {}
-    public static String [] filterNotGranted(Context context, String... permissions) {}
+public static boolean granted(Context context) {}
+public static boolean granted(Context context, String... permissions){}
+public static String [] filterGranted(Context context) {}
+public static String [] filterGranted(Context context, String... permissions){}
+public static String [] filterNotGranted(Context context) {}
+public static String [] filterNotGranted(Context context, String... permissions) {}
 ```
 
 ## License
