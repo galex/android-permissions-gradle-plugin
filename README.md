@@ -62,7 +62,15 @@ permissions {
 ```
 ## Utility Methods
 The class contains utility methods to ease the work with the [System Permissions API](http://developer.android.com/guide/topics/security/permissions.html).
-More documentation on this subject will be added soon.
+
+```java
+    public static boolean granted(Context context) {}
+    public static boolean granted(Context context, String... permissions){}
+    public static String [] filterGranted(Context context) {}
+    public static String [] filterGranted(Context context, String... permissions){}
+    public static String [] filterNotGranted(Context context) {}
+    public static String [] filterNotGranted(Context context, String... permissions) {}
+```
 
 ## License
 This plugin is available under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
