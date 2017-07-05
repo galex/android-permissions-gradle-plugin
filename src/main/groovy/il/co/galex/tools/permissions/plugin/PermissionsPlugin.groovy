@@ -35,7 +35,8 @@ class PermissionsPlugin implements Plugin<Project> {
         }
 
         variants.all { variant ->
-            variant.outputs.each { output ->
+            variant.outputs.all { output ->
+
                 def taskName = "generate${variant.name.capitalize()}PermissionsHelper"
                 //println "taskName = " + taskName
                 def outputHelper = project.file("$project.buildDir/generated/source/permissions/$variant.name/")
@@ -45,7 +46,7 @@ class PermissionsPlugin implements Plugin<Project> {
 
                 // find first the manifest for every variant
                 //println "Permissions [${variant.name}] output: ${output}"
-                File manifestOutFile = output.processManifest.manifestOutputFile
+                File manifestOutFile = output.processManifest.mainManifest
                 //println "manifestOutFile = " + manifestOutFile
 
                 def task = project.task(taskName, dependsOn: dependingOnTask, type: GenerateHelperTask) {

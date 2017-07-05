@@ -4,7 +4,7 @@ apply plugin: 'maven-publish'
 ext {
 
     pluginGroupId = 'il.co.galex.tools.build'
-    pluginVersion = '1.0.7'
+    pluginVersion = '1.1.0'
 }
 
 repositories {
@@ -13,13 +13,14 @@ repositories {
 
 dependencies {
     repositories {
-        mavenCentral()
+        google()
         jcenter()
+        mavenCentral()
     }
 
     compile gradleApi()
     compile localGroovy()
-    compile 'com.android.tools.build:gradle:1.5.0'
+    compile 'com.android.tools.build:gradle:3.0.0-alpha5'
 }
 
 compileJava {
