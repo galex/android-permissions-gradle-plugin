@@ -27,10 +27,12 @@ enum class DangerousPermission {
     READ_EXTERNAL_STORAGE,
     WRITE_EXTERNAL_STORAGE;
 
+
     /**
      * 'Manifest.permission' + enum name
      * @return the name of the variable containing this Permission in the Android SDK
      */
+    @Suppress("unused") // used from within templates
     val sdkName: String
         get() = "Manifest.permission.$name"
 
@@ -40,6 +42,6 @@ enum class DangerousPermission {
          * @param str
          * @return enum if the parameter str has an enum equivalent, and if not returns null
          */
-        fun get(str: String?): DangerousPermission? = values().firstOrNull { it.name == str}
+        fun get(str: String?): DangerousPermission? = values().firstOrNull { it.name == str }
     }
 }

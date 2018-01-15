@@ -35,5 +35,5 @@ private val InputStream.resourceFile: File
         return tempFile
     }
 
-public val URI.file: File
+val URI.file: File
     get() = this.inputStream.resourceFile

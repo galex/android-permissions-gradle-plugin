@@ -58,7 +58,6 @@ open class GenerateHelperTask : DefaultTask() {
             val fileDir = File(fileDirPath)
             fileDir.mkdirs()
             val finalFile = File(fileDirPath + className + SUFFIX)
-            //println finalFile
             finalFile.createNewFile()
 
             // write into the final file the generated template
