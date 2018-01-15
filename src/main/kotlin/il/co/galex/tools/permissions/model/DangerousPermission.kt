@@ -1,10 +1,6 @@
 package il.co.galex.tools.permissions.model
-/**
- * List of Dangerous permissions in the Android SDK.
- *
- * @author Alexander Gherschon
- */
-enum DangerousPermission {
+
+enum class DangerousPermission {
 
     READ_CALENDAR,
     WRITE_CALENDAR,
@@ -29,27 +25,21 @@ enum DangerousPermission {
     RECEIVE_WAP_PUSH,
     RECEIVE_MMS,
     READ_EXTERNAL_STORAGE,
-    WRITE_EXTERNAL_STORAGE
+    WRITE_EXTERNAL_STORAGE;
 
     /**
      * 'Manifest.permission' + enum name
      * @return the name of the variable containing this Permission in the Android SDK
      */
-    public String getSdkName(){
+    val sdkName: String
+        get() = "Manifest.permission.$name"
 
-        return "Manifest.permission." + this.name();
-    }
-
-    /**
-     * Get enum by its string value, if exists.
-     * @param str
-     * @return enum if the parameter str has an enum equivalent, and if not returns null
-     */
-    public static DangerousPermission get(String value){
-
-        for(DangerousPermission permission : values()){
-            if(permission.name().equals(value)) return permission
-        }
-        return null
+    companion object {
+        /**
+         * Get enum by its string value, if exists.
+         * @param str
+         * @return enum if the parameter str has an enum equivalent, and if not returns null
+         */
+        fun get(str: String?): DangerousPermission? = values().firstOrNull { it.name == str}
     }
 }
