@@ -1,36 +1,17 @@
 apply plugin: 'groovy'
 apply plugin: 'maven-publish'
 apply plugin: 'kotlin'
+apply plugin: 'com.jfrog.bintray'
 
 ext {
-
     pluginGroupId = 'il.co.galex.tools.build'
     pluginVersion = '1.9.0'
-}
 
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    repositories {
-        google()
-        jcenter()
-        mavenCentral()
-    }
-
-    compile gradleApi()
-    compile localGroovy()
-    compile 'com.android.tools.build:gradle:3.0.0-alpha5'
-}
-
-compileJava {
-    sourceCompatibility = 1.6
-    targetCompatibility = 1.6
 }
 
 buildscript {
-    ext.kotlin_version = '1.1.2'
+
+    ext.kotlin_version = '1.1.50'
 
     repositories {
         jcenter()
@@ -42,8 +23,23 @@ buildscript {
     }
 }
 
-apply plugin: 'com.jfrog.bintray'
+repositories {
+    google()
+    jcenter()
+    mavenCentral()
+}
 
+dependencies {
+
+    compile gradleApi()
+    compile localGroovy()
+    compileOnly 'com.android.tools.build:gradle:3.0.1'
+}
+
+compileJava {
+    sourceCompatibility = 1.6
+    targetCompatibility = 1.6
+}
 
 task sourceJar(type: Jar) {
     from sourceSets.main.allJava
@@ -89,10 +85,4 @@ bintray {
             publications = ['PermissionsPublication']
         }
     }
-}
-
-
-compileGroovy {
-    dependsOn tasks.getByPath('compileKotlin')
-    classpath += files(compileKotlin.destinationDir)
 }

@@ -14,7 +14,7 @@ import java.util.jar.JarFile
  */
 
 private const val PREFIX = "PermissionsHelper"
-private const val SUFFIX = ".java"
+public const val SUFFIX = ".java"
 
 private val URI.inputStream: InputStream
     get() {

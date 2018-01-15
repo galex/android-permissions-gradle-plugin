@@ -2,7 +2,7 @@ package il.co.galex.tools.permissions.model
 
 import java.util.regex.Pattern.compile
 
-class PermissionsExtension {
+open class PermissionsExtension {
 
     companion object {
         private val PACKAGE_IDENTIFIER = compile("(\\p{javaJavaIdentifierStart}\\p{javaJavaIdentifierPart}*\\.)*\\p{javaJavaIdentifierStart}\\p{javaJavaIdentifierPart}*")
@@ -21,5 +21,4 @@ class PermissionsExtension {
             return if (CLASS_IDENTIFIER.matcher(value).matches()) field = value
             else throw IllegalArgumentException("helperClassName is not a valid class name" + ADVICE)
         }
-
 }
