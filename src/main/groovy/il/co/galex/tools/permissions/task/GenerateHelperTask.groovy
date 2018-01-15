@@ -1,7 +1,8 @@
 package il.co.galex.tools.permissions.task
 
 import groovy.text.GStringTemplateEngine
-import il.co.galex.tools.permissions.util.FileUtils
+import il.co.galex.tools.permissions.util.FileExtensionsKt
+
 import il.co.galex.tools.permissions.util.FilterUtils
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.Input
@@ -37,7 +38,7 @@ class GenerateHelperTask extends DefaultTask {
         def permissions = FilterUtils.getRequiredPermissions(manifestFile)
 
         URI uri = this.getClass().getResource(HELPER_TEMPLATE_PATH).toURI()
-        File tempFile = FileUtils.getFile(uri)
+        File tempFile = FileExtensionsKt.getFile(uri)
 
         def binding = [
                 permissions : permissions,
