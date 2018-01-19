@@ -15,9 +15,9 @@ import java.io.File
 
 open class PermissionsPlugin : Plugin<Project> {
 
-    override fun apply(target: Project?) {
+    override fun apply(project: Project) {
 
-        target?.run {
+        project.run {
 
             extensions.create("permissions", PermissionsExtension::class.java)
             val hasApp = plugins.hasPlugin(AppPlugin::class.java)
