@@ -1,4 +1,4 @@
-# Android Permissions Gradle Plugin (1.1.0)
+# Android Permissions Gradle Plugin (2.0.0)
 ## Introduction
 Since Android Marshmallow, developers have to [request permissions](http://developer.android.com/guide/topics/security/permissions.html) the Android SDK considers dangerous, aka [Dangerous Permissions](http://developer.android.com/guide/topics/security/permissions.html#normal-dangerous).
 
@@ -74,9 +74,15 @@ public static String [] filterNotGranted(Context context, String... permissions)
 
 ## Change log
 
-- *1.1.0* Compatibility fix for the Android Gradle Plugin 3.0.0-alpha5
+- *2.0.0* Entirely rewritten in [Kotlin](https://kotlinlang.org/), yay!
+- 1.1.0 Compatibility fix for the Android Gradle Plugin 3.0.0-alpha5
 - 1.0.7 Compile plugin with JDK 6 to avoid a compatibility error
 - 1.0.6 First release
+
+## Next steps
+
+- Get rid of templates for the code generation and use JavaPoet
+- Add an option to generate a Kotlin helper class via KotlinPoet instead of the Java helper class
 
 ## License
 This plugin is available under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
