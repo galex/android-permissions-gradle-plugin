@@ -1,4 +1,4 @@
-# Android Permissions Gradle Plugin (2.0.0)
+# Android Permissions Gradle Plugin (2.0.1)
 ## Introduction
 Since Android Marshmallow, developers have to [request permissions](http://developer.android.com/guide/topics/security/permissions.html) the Android SDK considers dangerous, aka [Dangerous Permissions](http://developer.android.com/guide/topics/security/permissions.html#normal-dangerous).
 
@@ -35,7 +35,7 @@ buildscript {
     }
     dependencies {
         (...)
-        classpath 'il.co.galex.tools.build:permissions:2.0.0'
+        classpath 'il.co.galex.tools.build:permissions:2.0.1'
     }
 }
 
@@ -74,7 +74,8 @@ public static String [] filterNotGranted(Context context, String... permissions)
 
 ## Change log
 
-- *2.0.0* Entirely rewritten in [Kotlin](https://kotlinlang.org/), yay!
+- *2.0.1* Bug fix where the parameter "helperPackage" was not used as import
+- 2.0.0 Entirely rewritten in [Kotlin](https://kotlinlang.org/), yay!
 - 1.1.0 Compatibility fix for the Android Gradle Plugin 3.0.0-alpha5
 - 1.0.7 Compile plugin with JDK 6 to avoid a compatibility error
 - 1.0.6 First release

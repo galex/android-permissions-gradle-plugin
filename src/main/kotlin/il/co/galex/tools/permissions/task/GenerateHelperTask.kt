@@ -15,7 +15,7 @@ import java.io.PrintWriter
 open class GenerateHelperTask : DefaultTask() {
 
     companion object {
-        private val HELPER_TEMPLATE_PATH = "/templates/PermissionsHelper.java.template"
+        private const val HELPER_TEMPLATE_PATH = "/templates/PermissionsHelper.java.template"
     }
 
     @Input
@@ -44,9 +44,9 @@ open class GenerateHelperTask : DefaultTask() {
             val permissions: List<DangerousPermission>? = manifestFile?.requiredPermissions()
 
             val tempFile: File = javaClass.getResource(HELPER_TEMPLATE_PATH).toURI().file
-            val binding: Map<String, Any?> = mapOf(
+            val binding = mapOf(
                     "permissions" to permissions,
-                    "helperPackage" to helperPackage,
+                    "helperPackage" to classPackage,
                     "helperClassName" to className)
 
             val engine = GStringTemplateEngine()

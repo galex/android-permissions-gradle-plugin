@@ -7,7 +7,7 @@ open class PermissionsExtension {
     companion object {
         private val PACKAGE_IDENTIFIER = compile("(\\p{javaJavaIdentifierStart}\\p{javaJavaIdentifierPart}*\\.)*\\p{javaJavaIdentifierStart}\\p{javaJavaIdentifierPart}*")
         private val CLASS_IDENTIFIER = compile("[A-Z_](\$[A-Z_]|[\\w_])*")
-        private val ADVICE = ", please fix it or remove it from the permissions plugin configuration"
+        private const val ADVICE = ", please fix it or remove it from the permissions plugin configuration"
     }
 
     var helperPackage: String? = null

@@ -27,7 +27,6 @@ enum class DangerousPermission {
     READ_EXTERNAL_STORAGE,
     WRITE_EXTERNAL_STORAGE;
 
-
     /**
      * 'Manifest.permission' + enum name
      * @return the name of the variable containing this Permission in the Android SDK
